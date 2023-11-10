@@ -17,7 +17,7 @@ export const Signup = () => {
     current_location: "",
     last_company: "",
   });
-
+  const [checkPassword, setCheckPassword] = useState("");
   // Handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,16 +28,16 @@ export const Signup = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault();
 
-    // Log the form data
     console.log("Form Data:", formData);
 
-    // Redirect or perform any other actions
-    if ((formData.password = formData.confirm_password)) {
+    if (formData.password != formData.confirm_password) {
+      setCheckPassword("Passwords are not same");
+    } else {
       navigate("/");
+      setCheckPassword("");
     }
   };
 
@@ -46,6 +46,9 @@ export const Signup = () => {
       <div className={classes.signupPage}>
         <Form onSubmit={handleSubmit}>
           <div className={classes.signup_body}>
+            <div>
+              <h1>Sign Up</h1>
+            </div>
             <label>Name:</label>
             <input
               type="text"
@@ -70,6 +73,9 @@ export const Signup = () => {
               onChange={handleChange}
             />
             <label>Confirm Password</label>
+            {checkPassword && (
+              <label style={{ color: "red" }}>{checkPassword}</label>
+            )}
             <input
               type="password"
               name="confirm_password"
