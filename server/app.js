@@ -27,3 +27,5 @@ app.use(express.json({ limit: "10kb" }));
 
 app.use(mongoSanitize());
 app.use(xss());
+
+module.exports = app;

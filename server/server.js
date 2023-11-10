@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotent");
+const dotenv = require("dotenv");
 
 process.on("uncaughtException", (err) => {
   console.log("UNCAUGHT EXCEPTION!! **  Shutting down ....");
@@ -9,6 +9,7 @@ process.on("uncaughtException", (err) => {
 
 dotenv.config({ path: "./config.env" });
 const app = require("./app");
+
 const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
   process.env.DATABASE_PASSWORD
@@ -21,9 +22,11 @@ mongoose
   .then(() => console.log("DB connection successful!"));
 
 const port = process.env.PORT || 5000;
+// console.log("After app.listen");
 const server = app.listen(port, () => {
-  console.log(`App running on port ${port}.....`);
+  console.log(`App running on port ${port}...`);
 });
+// console.log("After app.listen");
 
 process.on("unhandledRejection", (err) => {
   console.log("UNHANDLED REJECTION! **  Shutting down ....");

@@ -10,9 +10,10 @@ export const Signup = () => {
     name: "",
     email: "",
     password: "",
-    confirm_password: "",
+    passwordConfirm: "",
     phone: "",
     dob: "",
+    role: "",
     address: "",
     current_location: "",
     last_company: "",
@@ -33,7 +34,7 @@ export const Signup = () => {
 
     console.log("Form Data:", formData);
 
-    if (formData.password != formData.confirm_password) {
+    if (formData.password != formData.passwordConfirm) {
       setCheckPassword("Passwords are not same");
     } else {
       navigate("/login");
@@ -79,7 +80,7 @@ export const Signup = () => {
             <input
               type="password"
               name="confirm_password"
-              value={formData.confirm_password}
+              value={formData.passwordConfirm}
               onChange={handleChange}
             />
             <label>Phone No:</label>
@@ -96,6 +97,14 @@ export const Signup = () => {
               id="dob"
               name="dob"
               value={formData.dob}
+              onChange={handleChange}
+            />
+            <label> Role:</label>
+            <input
+              type="text"
+              id="role"
+              name="role"
+              value={formData.role}
               onChange={handleChange}
             />
             <label> Address</label>
