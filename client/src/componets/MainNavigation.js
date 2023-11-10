@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
+import { useAuth } from "../App";
 
-export const MainNavigation = ({ isLogedin }) => {
+export const MainNavigation = () => {
+  const { isLogedin, setIsLogedin } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    setIsLogedin(false);
+    navigate("/signup");
+  };
   return (
     <header className={classes.header}>
       <div className={classes.navbar}>
@@ -32,7 +39,7 @@ export const MainNavigation = ({ isLogedin }) => {
             </li>
           </ul>
         </nav>
-        {isLogedin && <button> Log Out</button>}
+        {isLogedin && <button onClick={handleLogout}> Log Out</button>}
         {!isLogedin && (
           <NavLink
             to="/login"

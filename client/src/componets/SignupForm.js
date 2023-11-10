@@ -36,7 +36,7 @@ export const Signup = () => {
     if (formData.password != formData.confirm_password) {
       setCheckPassword("Passwords are not same");
     } else {
-      navigate("/");
+      navigate("/login");
       setCheckPassword("");
     }
   };

@@ -1,11 +1,14 @@
 import React from "react";
 import { Form, Link, useNavigate } from "react-router-dom";
 import classes from "./LoginForm.module.css";
+import { useAuth } from "../App";
 
 export const LoginForm = () => {
+  const { setIsLogedin } = useAuth();
   const navigate = useNavigate();
   const onSubmit = () => {
     navigate("/");
+    setIsLogedin(true);
   };
   return (
     <>

@@ -1,9 +1,14 @@
-import { useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { SignupPage } from "./page/SignupPage";
 import { HomePage } from "./page/HomePage";
 import { LoginPage } from "./page/LoginPage";
 import { Root } from "./page/Root";
+
+const AuthContext = createContext({
+  isLogedin: false,
+  setIsLogedin: () => {},
+});
 
 const router = createBrowserRouter([
   {
@@ -18,7 +23,16 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [isLogedin, setIsLogedin] = useState(24);
-  return <RouterProvider router={router} />;
+  const [isLogedin, setIsLogedin] = useState(false);
+  return (
+    <AuthContext.Provider value={{ isLogedin, setIsLogedin }}>
+      <RouterProvider router={router} />
+    </AuthContext.Provider>
+  );
 }
+
+export function useAuth() {
+  return useContext(AuthContext);
+}
+
 export default App;
