@@ -1,0 +1,31 @@
+.header {
+  max-width: 60rem;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  background-color: antiquewhite;
+  border-radius: 10px;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+
+  gap: 4rem;
+}
+
+.list NavLink {
+  text-decoration: none;
+  color: var(--color-primary-400);
+}
+
+.list NavLink:hover,
+.list NavLink.active {
+  color: var(--color-primary-800);
+}
