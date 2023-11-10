@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
-export const MainNavigation = () => {
+export const MainNavigation = ({ isLogedin }) => {
   return (
     <header className={classes.header}>
       <div className={classes.navbar}>
@@ -30,20 +30,20 @@ export const MainNavigation = () => {
                 Sign Up
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-                end
-              >
-                Log In
-              </NavLink>
-            </li>
           </ul>
         </nav>
-        <button> Log Out</button>
+        {isLogedin && <button> Log Out</button>}
+        {!isLogedin && (
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive ? classes.active : undefined
+            }
+            end
+          >
+            Log In
+          </NavLink>
+        )}
       </div>
     </header>
   );

@@ -18,7 +18,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [isLogedin, setIsLogedin] = useState(false);
+  const [isLogedin, setIsLogedin] = useState(24);
   return <RouterProvider router={router} />;
 }
 export default App;
