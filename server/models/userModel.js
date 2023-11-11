@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a password"],
     minlength: 6,
-    select: false,
+    // select: false,
   },
   passwordConfirm: {
     type: String,
@@ -37,12 +37,12 @@ const userSchema = new mongoose.Schema({
     length: 10,
   },
   dob: {
-    type: Date,
-    require: [true, "Please provide your Date of birth"],
+    type: String,
+    // require: [true, "Please provide your Date of birth"],
   },
   role: {
     type: String,
-    // enum: ["user", "guide", "lead-guide", "admin"],
+    enum: ["user", "guide", "lead-guide", "admin"],
     default: "user",
   },
   address: {
@@ -55,7 +55,7 @@ const userSchema = new mongoose.Schema({
   last_company: {
     type: String,
     require: [
-      True,
+      true,
       "Please provide your last company or curruent company name!",
     ],
   },
