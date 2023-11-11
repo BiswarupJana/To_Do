@@ -20,13 +20,14 @@ export const LoginForm = () => {
             <label>Password</label>
             <input type="password" name="password" id="password" />
             <button type="submit" onClick={onSubmit}>
-              {" "}
               Log In
             </button>
           </div>
         </Form>
         <p>
-          {" "}
+          <Link to="/">forget Password?</Link>
+        </p>
+        <p>
           Don't have an account? <Link to="/signup">Sign up</Link>
         </p>
       </div>

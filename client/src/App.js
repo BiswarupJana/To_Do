@@ -4,6 +4,7 @@ import { SignupPage } from "./page/SignupPage";
 import { HomePage } from "./page/HomePage";
 import { LoginPage } from "./page/LoginPage";
 import { Root } from "./page/Root";
+import { ForgetPasswordPage } from "./page/ForgetPasswordPage";
 
 const AuthContext = createContext({
   isLogedin: false,
@@ -17,7 +18,13 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "signup", element: <SignupPage /> },
-      { path: "login", element: <LoginPage /> },
+      {
+        path: "login",
+        element: <LoginPage />,
+        children: [
+          { path: "login/forgetPassword", element: <ForgetPasswordPage /> },
+        ],
+      },
     ],
   },
 ]);
