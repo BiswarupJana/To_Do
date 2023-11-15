@@ -4,17 +4,26 @@ const authController = require("../controllers/authController");
 
 const router = express.Router();
 
-// router("/")
-//   .get(projectController.getAllProjects)
-//   .post(
-//     authController.protect,
-//     authController.restrictTo("lead", "admin"),
-//     projectController.createProject
-//   )
-//   .delete(
-//     authController.protect,
-//     authController.restrictTo("lead", "admin"),
-//     projectController.deleteProject
-//   );
+router
+  .route("/")
+  .get(projectController.getAllProjects)
+  .post(
+    authController.protect,
+    authController.restrictTo("lead", "admin"),
+    projectController.createProject
+  );
+router
+  .route("/:id")
+  .get(projectController.getProject)
+  .patch(
+    authController.protect,
+    authController.restrictTo("admin", "lead"),
+    projectController.updateProject
+  )
+  .delete(
+    authController.protect,
+    authController.restrictTo("lead", "admin"),
+    projectController.deleteProject
+  );
 
 module.exports = router;
