@@ -59,5 +59,36 @@ const projectSchema = new mongoose.Schema(
   }
 );
 
+
+//projects index 
+projectSchema.index({startDates: -1});
+projectSchema.index({slug: 1});
+
+//DOCUMENT MIDDLEWARE:
+projectSchema.pre('save', function(next){
+    this.slug = slugify(this.name,{lower: true});
+    next()
+})
+
+//QUERY MIDDLEWARE
+projectSchema.pre(/^find/, function(next){
+    this.find({secretProject:{$ne:true}});
+    this.start =Date.now();
+    next();
+});
+
+projectSchema.pre(/^find/, function(next){
+    this.populate({
+        path: 'assignedEmployees',
+        select: ' -__v -passwordChangedAt'
+    })
+    next();
+});
+
+projectSchema.post(/^find/, function(docs, next){
+    console.log(`Query took ${Date.now() - this.start} milliseconds!`);
+    next();
+});
+
 const Project = mongoose.model("Project", projectSchema);
 module.exports = Project;
