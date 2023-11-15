@@ -25,7 +25,7 @@ export const LoginForm = () => {
           </div>
         </Form>
         <p>
-          <Link to="/">forget Password?</Link>
+          <Link to="/forgetPassword">forget Password?</Link>
         </p>
         <p>
           Don't have an account? <Link to="/signup">Sign up</Link>
